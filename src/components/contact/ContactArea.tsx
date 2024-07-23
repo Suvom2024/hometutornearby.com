@@ -22,7 +22,7 @@ const contact_list: DataType[] = [
       id: 2,
       icon: icon_2,
       title: "Our Email",
-      desc: "name@website.com",
+      desc: "hometutor.com",
    },
    {
       id: 3,

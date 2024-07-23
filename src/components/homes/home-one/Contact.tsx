@@ -17,22 +17,22 @@ const contact_data: DataType[] = [
       id: 1,
       icon: icon_1,
       title: "Our Address",
-      address: (<><p>PSD Building, 2 AlBahr</p>
-         <p>St, Loskia sripur</p></>),
+      address: (<><p>Gurgaon</p>
+         <p>New Delhi</p></>),
    },
    {
       id: 2,
       icon: icon_2,
       title: "Our Phone",
-      address: (<><p>+0029129102320</p>
-         <p>+000 2324 39493</p></>),
+      address: (<><p>++91 98475 44375</p>
+         <p>+91 98475 44375</p></>),
    },
    {
       id: 3,
       icon: icon_3,
       title: "Our Email",
-      address: (<> <p>name@website.com</p>
-         <p>Info@orex.com</p></>),
+      address: (<> <p>hometutor.com</p>
+         <p>hometutor@gmail.com</p></>),
    },
 ]
 

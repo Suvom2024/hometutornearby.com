@@ -55,8 +55,8 @@ const HeaderTopOne = () => {
   };
 
   return (
-    <div className="navbar-top">
-      <div className="container">
+    <div >
+      {/* <div className="container">
         <div className="row">
           <div className="col-md-8 text-md-left text-center">
             <ul>
@@ -83,7 +83,7 @@ const HeaderTopOne = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
