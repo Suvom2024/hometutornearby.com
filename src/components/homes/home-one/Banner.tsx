@@ -1,7 +1,8 @@
 import Image from "next/image"
 import bannerThumb from "@/assets/img/banner/1.png"
 import Link from "next/link"
-
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 const Banner = () => {
    return (
       <div className="banner-area banner-area-1 bg-gray">

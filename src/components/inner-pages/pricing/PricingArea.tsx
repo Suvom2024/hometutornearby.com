@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CSSProperties } from "react";
-
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 const pricing_data = [
    {
       id: 1,

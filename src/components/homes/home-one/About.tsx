@@ -1,7 +1,8 @@
 import Image from "next/image"
 
 import bannerThumb from "@/assets/img/icon/4.png"
-
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 const About = () => {
    return (
       <div className="about-area pd-top-140">

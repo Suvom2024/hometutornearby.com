@@ -22,8 +22,6 @@ const HomeOne = () => {
       <Counter />
       <WorkArea />
       <Testimonial />
-      <Team />
-      <Blog />
       <Contact />
       <FooterOne />
     </>

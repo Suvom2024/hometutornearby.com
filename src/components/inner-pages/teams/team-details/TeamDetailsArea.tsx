@@ -46,7 +46,7 @@ const TeamDetailsArea = () => {
                      <div key={item.id} className="col-lg-4 col-md-6">
                         <div className="single-course-inner">
                            <div className="thumb">
-                              <Image src={item.thumb} alt="img" />
+                              {/* <Image src={item.thumb} alt="img" /> */}
                            </div>
                            <div className="details">
                               <div className="details-inner">

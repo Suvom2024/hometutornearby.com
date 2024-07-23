@@ -8,7 +8,8 @@ import { getDatabase, ref, set } from "firebase/database";
 import firebaseConfig from './firebaseConfig'; // Import Firebase configuration
 import { initializeApp } from "firebase/app";
 import axios from 'axios';
-
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 console.log('Initializing Firebase with config:', firebaseConfig);
 
 // Initialize Firebase

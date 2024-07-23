@@ -37,7 +37,7 @@ const CourseDetailsArea = () => {
                   <div key={item.id} className="col-lg-4 col-md-6">
                      <div className="single-course-inner">
                         <div className="thumb">
-                           <Image src={item.thumb} alt="img" />
+                           <Image src={item.imageUrl} alt="img" width={300} height={200} />
                         </div>
                         <div className="details">
                            <div className="">
@@ -73,4 +73,4 @@ const CourseDetailsArea = () => {
    )
 }
 
-export default CourseDetailsArea
+export default CourseDetailsArea;
