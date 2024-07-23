@@ -40,9 +40,9 @@ const FooterOne = () => {
                   <div className="widget widget_contact">
                     <h4 className="widget-title">Contact Us</h4>
                     <ul className="details">
-                      <li><i className="fa fa-map-marker"></i> 420 Love Sreet 133/2 Street NewYork</li>
-                      <li><i className="fa fa-envelope"></i> info.contact@gmail.com</li>
-                      <li><i className="fa fa-phone"></i> 012 345 678 9101</li>
+                      <li><i className="fa fa-map-marker"></i> Gurgaon , New Delhi</li>
+                      <li><i className="fa fa-envelope"></i> hometutor@gmail.com</li>
+                      <li><i className="fa fa-phone"></i> +91 87962 44651</li>
                     </ul>
                   </div>
                 </div>
