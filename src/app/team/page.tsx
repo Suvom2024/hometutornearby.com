@@ -2,7 +2,7 @@ import Team from "@/components/inner-pages/teams/team";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Team Edumint - Edumint LMS & Online Courses React Next js Template",
+   title: "Team Edumint - A Tutor Webiste",
 };
 const page = () => {
    return (

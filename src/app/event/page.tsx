@@ -2,7 +2,7 @@ import Event from "@/components/inner-pages/event";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Event Edumint - Edumint LMS & Online Courses React Next js Template",
+   title: "Event Edumint - A Tutor Webiste",
 };
 const page = () => {
    return (

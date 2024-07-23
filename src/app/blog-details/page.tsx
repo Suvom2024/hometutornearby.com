@@ -2,7 +2,7 @@ import BlogDetails from "@/components/blogs/blog-details";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Blog Details Edumint - Edumint LMS & Online Courses React Next js Template",
+   title: "Blog Details Edumint - A Tutor Webiste",
 };
 const page = () => {
    return (
