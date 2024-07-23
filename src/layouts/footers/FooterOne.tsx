@@ -56,21 +56,7 @@ const FooterOne = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="col-lg-3 col-md-6">
-                  <div className="widget widget_blog_list">
-                    <h4 className="widget-title">News & Blog</h4>
-                    <ul>
-                      <li>
-                        <h6><Link href="/blog-details">Big Ideas Of Business Branding Info.</Link></h6>
-                        <span className="date"><i className="fa fa-calendar"></i> December 7, 2023</span>
-                      </li>
-                      <li>
-                        <h6><Link href="/blog-details">Ui/Ux Ideas Of Business Branding Info.</Link></h6>
-                        <span className="date"><i className="fa fa-calendar"></i> December 7, 2023</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                
                 {/* <div className="col-lg-3 col-md-6">
                   <div className="widget widget_contact">
                     <h4 className="widget-title">Twitter Feed</h4>
