@@ -39,7 +39,7 @@ const Banner: React.FC = () => {
                </div>
                <div className="col-lg-7 order-lg-1 align-self-center">
                   <div className="banner-inner text-center text-lg-left mt-5 mt-lg-0">
-                     <h1 className="b-animate-2 title" style={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Let's make learning fun!</h1>
+                     <h1 className="b-animate-2 title" style={{ color: '#002147', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Let's make learning fun!</h1>
                      <Link className="ed-btn btn-base b-animate-3 btn-gap" href="/contact">Get In Touch</Link>
                   </div>
                </div>
