@@ -60,8 +60,8 @@ const HeaderTopOne = () => {
         <div className="row">
           <div className="col-md-8 text-md-left text-center">
             <ul>
-              <li><p style={{ fontSize: '16px' }}><i className="fa fa-map-marker"></i> 2072 Pinnickinick Street, WA 98370</p></li>
-              <li><p style={{ fontSize: '16px' }}><i className="fa fa-envelope-o"></i> info@website.com</p></li>
+              <li><p style={{ fontSize: '16px' }}><i className="fa fa-map-marker"></i> Gurgaon , New Delhi</p></li>
+              <li><p style={{ fontSize: '16px' }}><i className="fa fa-envelope-o"></i> hometutor@gmail.com</p></li>
             </ul>
           </div>
           <div className="col-md-4">
