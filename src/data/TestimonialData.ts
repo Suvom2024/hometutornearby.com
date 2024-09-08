@@ -16,7 +16,7 @@ const testi_data: DataType[] = [
    {
       id: 1,
       page: "home_1",
-      desc: "The tutoring sessions have been incredibly beneficial. [Your Tutor’s Name] not only helped me grasp difficult concepts in Mathematics but also made learning enjoyable. The flexible schedule fits perfectly with my school timings.",
+      desc: "The tutoring sessions have been incredibly beneficial. They not only helped me grasp difficult concepts in Mathematics but also made learning enjoyable. The flexible schedule fits perfectly with my school timings.",
       author_img: authorImg_2,
       author_name: "Priya Patel",
       designation: "High School Student, Mumbai",
@@ -59,7 +59,7 @@ const testi_data: DataType[] = [
    {
       id: 1,
       page: "home_2",
-      desc: "The tutoring sessions have been incredibly beneficial. [Your Tutor’s Name] not only helped me grasp difficult concepts in Mathematics but also made learning enjoyable. The flexible schedule fits perfectly with my school timings.",
+      desc: "The tutoring sessions have been incredibly beneficial. They not only helped me grasp difficult concepts in Mathematics but also made learning enjoyable. The flexible schedule fits perfectly with my school timings.",
       author_img: authorImg_2,
       author_name: "Priya Patel",
       designation: "High School Student, Mumbai",
@@ -102,7 +102,7 @@ const testi_data: DataType[] = [
    {
       id: 1,
       page: "home_3",
-      desc: "The tutoring sessions have been incredibly beneficial. [Your Tutor’s Name] not only helped me grasp difficult concepts in Mathematics but also made learning enjoyable. The flexible schedule fits perfectly with my school timings.",
+      desc: "The tutoring sessions have been incredibly beneficial. They not only helped me grasp difficult concepts in Mathematics but also made learning enjoyable. The flexible schedule fits perfectly with my school timings.",
       author_img: authorImg_2,
       author_name: "Priya Patel",
       designation: "High School Student, Mumbai",

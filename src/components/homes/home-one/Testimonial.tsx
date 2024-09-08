@@ -36,6 +36,12 @@ const Testimonial = () => {
    return (
       <div className="testimonial-area pd-top-60 pd-bottom-100">
          <div className="container">
+            {/* Section Title */}
+            <div className="section-title text-center">
+               <h6 className="sub-title double-line">Students Testimonials</h6>
+               <h2 className="title">What Our Students Say</h2>
+            </div>
+
             <div className="testimonial-area-inner bg-cover" style={{ backgroundImage: `url(/assets/img/other/2.png)` }}>
                <Image className="testimonial-right-img" src={testiThumb_1} alt="img" />
                <div className="testimonial-slider">

@@ -8,7 +8,7 @@ const Testimonial = () => {
                <div className="col-xl-6 col-lg-7 col-md-11">
                   <div className="section-title text-center">
                      <h6 className="sub-title double-line">Students Testimonials</h6>
-                     <h2 className="title">What our students say </h2>
+                     <h2 className="title">What Our Students Say </h2>
                   </div>
                </div>
             </div>

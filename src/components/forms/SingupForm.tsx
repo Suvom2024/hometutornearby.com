@@ -1,16 +1,15 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { toast } from 'react-toastify';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getDatabase, ref, set } from "firebase/database";
-import firebaseConfig from './firebaseConfig'; // Import Firebase configuration
 import { initializeApp } from "firebase/app";
 import axios from 'axios';
 import StickyHireButton from '../StickyHireButton';
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @next/next/no-img-element */
+import firebaseConfig from './firebaseConfig'; // Import Firebase configuration
+
 console.log('Initializing Firebase with config:', firebaseConfig);
 
 // Initialize Firebase
@@ -25,28 +24,35 @@ interface FormData {
    subject: string;
 }
 
-const SingupForm = () => {
+const SignupForm = () => {
    const schema = yup
       .object({
-         userType: yup.string().required().label("User Type"),
+         userType: yup.string().required("Please select a user type.").label("User Type"),
          name: yup.string().required("Please enter your name.").label("Name"),
-         mobileNumber: yup.string().required("Please enter mobile number.").min(10, "Enter 10 digit mobile number.").max(10, "Enter 10 digit mobile number.").label("Mobile Number"),
-         email: yup.string().required().email().label("Email"),
-         course: yup.string().required("Please enter course. Eg. Class I CBSE or Class X or B.Tech etc.").label("Course"),
-         subject: yup.string().required("Please enter subjects. Eg. maths, physics or all subjects etc.").label("Subject"),
+         mobileNumber: yup
+            .string()
+            .required("Please enter a mobile number.")
+            .min(10, "Enter a 10-digit mobile number.")
+            .max(10, "Enter a 10-digit mobile number.")
+            .label("Mobile Number"),
+         email: yup.string().required("Please enter your email.").email("Enter a valid email.").label("Email"),
+         course: yup.string().required("Please enter a course.").label("Course"),
+         subject: yup.string().required("Please enter subjects.").label("Subject"),
       })
       .required();
 
-   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({ resolver: yupResolver(schema) });
+   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
+      resolver: yupResolver(schema)
+   });
 
    const onSubmit = async (data: FormData) => {
-      console.log('Form Data:', data); // Log form data to verify
+      console.log('Form Data:', data);
 
-      const db = getDatabase(app); // Get a reference to the database using the initialized app
-      const newUserRef = ref(db, 'users/' + Date.now()); // Create a reference for a new user with a unique ID
+      const db = getDatabase(app); // Get a reference to the database
+      const newUserRef = ref(db, 'users/' + Date.now()); // Create a unique user reference
 
       try {
-         await set(newUserRef, data); // Save the data to Firebase
+         await set(newUserRef, data); // Save data to Firebase
          await axios.post('/api/save-registration', data); // Send data to the backend to save in Excel
          toast.success('Registration successful', { position: 'top-center' });
          reset();
@@ -100,14 +106,14 @@ const SingupForm = () => {
             <div className="form-group">
                <div className="single-input-inner style-bg-border">
                   <input type="text" {...register("course")} placeholder="Courses you teach" />
-                  <small>eg. Class I CBSE or Class X or B.Tech etc.</small>
+                  <small>e.g., Class I CBSE or Class X or B.Tech, etc.</small>
                   <p className="form_error">{errors.course?.message}</p>
                </div>
             </div>
             <div className="form-group">
                <div className="single-input-inner style-bg-border">
                   <input type="text" {...register("subject")} placeholder="Subjects you teach" />
-                  <small>maths, physics or all subjects etc.</small>
+                  <small>e.g., maths, physics, or all subjects, etc.</small>
                   <p className="form_error">{errors.subject?.message}</p>
                </div>
             </div>
@@ -115,7 +121,7 @@ const SingupForm = () => {
                <button type="submit" className="ed-btn btn-base w-100">FIND STUDENTS NOW!</button>
             </div>
             <div className="form-footer">
-               <p>By signing up you agree to our <Link href="/terms-and-conditions">Terms and Conditions</Link></p>
+               <p>By signing up, you agree to our <Link href="/terms-and-conditions">Terms and Conditions</Link></p>
                <p>Already a member? <Link href="/login"><strong>Login</strong></Link></p>
             </div>
          </form>
@@ -124,4 +130,4 @@ const SingupForm = () => {
    )
 }
 
-export default SingupForm;
+export default SignupForm;
