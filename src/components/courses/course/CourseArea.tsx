@@ -1,11 +1,10 @@
 "use client";
 import React, { useState, CSSProperties } from "react";
-import Image from "next/image";
 import ReactPaginate from "react-paginate";
 import UseProducts from "@/hooks/UseProducts";
 import { useSelector } from "react-redux";
 import { selectProducts } from "@/redux/features/productSlice";
-import course_data, { CourseType } from "@/data/CourseData";
+import StickyHireButton from '../../StickyHireButton';
 
 const CourseArea = () => {
    const [hoveredCourse, setHoveredCourse] = useState<number | null>(null);
@@ -18,22 +17,12 @@ const CourseArea = () => {
    const { products, setProducts } = UseProducts();
    const allProducts = useSelector(selectProducts);
 
-   const productCategory = useSelector(selectProducts).map(product => product.category);
-   const priceCategory = useSelector(selectProducts).map(product => product.course_filter);
-   const levelCategory = useSelector(selectProducts).map(product => product.level);
-   const tags = useSelector(selectProducts).map(product => product.tag);
-
-   const allCategory = ['All Category', ...new Set(productCategory)];
-   const allPrice = ['All Price', ...new Set(priceCategory)];
-   const allLevel = ['All Level', ...new Set(levelCategory)];
-   const allTags = [...new Set(tags)];
-
    const handleCategory = (category: string) => {
       setSelectedCategory(category);
       if (category === 'All Category') {
          setProducts(allProducts);
       } else {
-         const filteredCourses = course_data.filter(course => course.category === category);
+         const filteredCourses = allProducts.filter(course => course.category === category);
          setProducts(filteredCourses);
       }
    };
@@ -78,6 +67,9 @@ const CourseArea = () => {
       transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
       marginBottom: '20px', // Adjusted for spacing between courses
       width: '100%', // Make sure each course box takes full width
+      height: '370px', // Fixed height for uniform card size
+      display: 'flex',
+      flexDirection: 'column',
    };
 
    const courseBoxHoverStyle: CSSProperties = {
@@ -89,6 +81,7 @@ const CourseArea = () => {
       width: '100%',
       height: 'auto',
       transition: 'transform 0.3s ease-in-out',
+      flex: '1', // Let the image take as much space as needed
    };
 
    const imageHoverStyle: CSSProperties = {
@@ -117,7 +110,14 @@ const CourseArea = () => {
       opacity: 1,
    };
 
-   // Pagination variables
+   const detailsStyle: CSSProperties = {
+      padding: '15px',
+      backgroundColor: '#fff',
+      textAlign: 'left',
+      height: '100px', // Fixed height to keep the details section uniform
+      overflow: 'hidden', // Hide overflow text
+   };
+
    const itemsPerPage = 6;
    const [itemOffset, setItemOffset] = useState(0);
    const endOffset = itemOffset + itemsPerPage;
@@ -130,115 +130,116 @@ const CourseArea = () => {
    };
 
    return (
-      <div className="course-area pd-top-80 pd-bottom-80" style={{ marginLeft: '1cm', marginRight: '1cm' }}>
-         <div className="container">
-            <div className="row">
-               <div className="col-lg-3 col-md-12">
-                  <div className="td-sidebar mt-5 mt-lg-0">
-                     <div className="widget widget_search">
-                        <h4 className="widget-title">Search</h4>
-                        <form>
-                           <input
-                              type="text"
-                              placeholder="Search courses..."
-                              value={searchTerm}
-                              onChange={handleSearch}
-                              className="form-control"
-                           />
-                        </form>
-                     </div>
-                     <div className="widget widget_catagory">
-                        <h4 className="widget-title">Category</h4>
-                        <ul className="catagory-items">
-                           {allCategory.map((category, index) => (
-                              <li key={index} className={selectedCategory === category ? 'active' : ''}>
-                                 <a
-                                    onClick={() => handleCategory(category)}
-                                    style={{
-                                       cursor: 'pointer',
-                                       textDecoration: 'none',
-                                       color: selectedCategory === category ? '#333333' : '#333333',
-                                       backgroundColor: 'transparent',
-                                       padding: '1px 12px',
-                                       borderRadius: '4px',
-                                       display: 'block',
-                                       marginBottom: '4px',
-                                       textAlign: 'center',
-                                    }}
-                                 >
-                                    {category}
-                                 </a>
-                              </li>
-                           ))}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <div className="col-lg-9 col-md-12">
-                  <div className="tab-content" id="myTabContent">
-                     <div className={`tab-pane fade show active`}>
-                        <div className="row">
-                           {filteredProducts.map(course => (
-                              <div key={course.id} className="col-lg-5 col-md-6">
-                                 <div
-                                    className="single-course-inner animated-card"
-                                    style={hoveredCourse === course.id ? { ...courseBoxStyle, ...courseBoxHoverStyle } : courseBoxStyle}
-                                    onMouseEnter={() => setHoveredCourse(course.id)}
-                                    onMouseLeave={() => setHoveredCourse(null)}
-                                 >
-                                    <div className="image" >
-                                       <img
-                                          src={course.imageUrl}
-                                          alt={course.title}
-                                          style={hoveredCourse === course.id ? { ...imageStyle, ...imageHoverStyle } : imageStyle}
-                                       />
-                                       <div
-                                          className="criss-cross-box"
-                                          style={hoveredCourse === course.id ? { ...crissCrossBoxStyle, ...crissCrossBoxHoverStyle } : crissCrossBoxStyle}
+      <div>
+         <div className="course-area" style={{ paddingTop: '90px' }}>
+            <div className="course-area pd-top-80 pd-bottom-80" style={{ marginLeft: '1cm', marginRight: '1cm' }}>
+               <div className="container">
+                  <div className="row">
+                     <div className="col-lg-3 col-md-12">
+                        <div className="td-sidebar mt-5 mt-lg-0">
+                           <div className="widget widget_search">
+                              <h4 className="widget-title">Search</h4>
+                              <form>
+                                 <input
+                                    type="text"
+                                    placeholder="Search courses..."
+                                    value={searchTerm}
+                                    onChange={handleSearch}
+                                    className="form-control"
+                                 />
+                              </form>
+                           </div>
+                           <div className="widget widget_catagory">
+                              <h4 className="widget-title">Category</h4>
+                              <ul className="catagory-items">
+                                 {['All Category', ...new Set(allProducts.map(product => product.category))].map((category, index) => (
+                                    <li key={index} className={selectedCategory === category ? 'active' : ''}>
+                                       <a
+                                          onClick={() => handleCategory(category)}
+                                          style={{
+                                             cursor: 'pointer',
+                                             textDecoration: 'none',
+                                             color: '#333333',
+                                             backgroundColor: 'transparent',
+                                             padding: '1px 12px',
+                                             borderRadius: '4px',
+                                             display: 'block',
+                                             marginBottom: '4px',
+                                             textAlign: 'center',
+                                          }}
                                        >
-                                          {course.title}
+                                          {category}
+                                       </a>
+                                    </li>
+                                 ))}
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div className="col-lg-9 col-md-12">
+                        <div className="tab-content" id="myTabContent">
+                           <div className={`tab-pane fade show active`}>
+                              <div className="row">
+                                 {filteredProducts.map(course => (
+                                    <div key={course.id} className="col-lg-5 col-md-6">
+                                       <div
+                                          className="single-course-inner animated-card"
+                                          style={hoveredCourse === course.id ? { ...courseBoxStyle, ...courseBoxHoverStyle } : courseBoxStyle}
+                                          onMouseEnter={() => setHoveredCourse(course.id)}
+                                          onMouseLeave={() => setHoveredCourse(null)}
+                                       >
+                                          <div className="image">
+                                             <img
+                                                src={course.imageUrl}
+                                                alt={course.title}
+                                                style={hoveredCourse === course.id ? { ...imageStyle, ...imageHoverStyle } : imageStyle}
+                                             />
+                                             <div
+                                                className="criss-cross-box"
+                                                style={hoveredCourse === course.id ? { ...crissCrossBoxStyle, ...crissCrossBoxHoverStyle } : crissCrossBoxStyle}
+                                             >
+                                                {course.title}
+                                             </div>
+                                          </div>
+                                          <div className="details" style={detailsStyle}>
+                                             <h6>{course.title}</h6>
+                                             <p>{course.description}</p>
+                                          </div>
                                        </div>
                                     </div>
-                                    <div className="details">
-                                       <div className="details-inner">
-                                          <h6>{course.title}</h6>
-                                          <p>{course.description}</p>
-                                       </div>
-                                    </div>
-                                 </div>
+                                 ))}
                               </div>
-                           ))}
+                           </div>
                         </div>
                      </div>
                   </div>
+                  <div className="pagination-area">
+                     <ReactPaginate
+                        previousLabel={"Previous"}
+                        nextLabel={"Next"}
+                        breakLabel={"..."}
+                        breakClassName={"break-me"}
+                        pageCount={pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={handlePageClick}
+                        containerClassName={"pagination justify-content-center"}
+                        activeClassName={"active"}
+                        previousClassName={"page-item"}
+                        nextClassName={"page-item"}
+                        previousLinkClassName={"page-link"}
+                        nextLinkClassName={"page-link"}
+                        pageClassName={"page-item"}
+                        pageLinkClassName={"page-link"}
+                        disabledClassName={"disabled"}
+                     />
+                  </div>
                </div>
             </div>
-
-            {/* Pagination */}
-            <div className="pagination-area">
-               <ReactPaginate
-                  previousLabel={"Previous"}
-                  nextLabel={"Next"}
-                  breakLabel={"..."}
-                  breakClassName={"break-me"}
-                  pageCount={pageCount}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
-                  onPageChange={handlePageClick}
-                  containerClassName={"pagination justify-content-center"}
-                  activeClassName={"active"}
-                  previousClassName={"page-item"}
-                  nextClassName={"page-item"}
-                  previousLinkClassName={"page-link"}
-                  nextLinkClassName={"page-link"}
-                  pageClassName={"page-item"}
-                  pageLinkClassName={"page-link"}
-                  disabledClassName={"disabled"}
-               />
-            </div>
-            {/* End Pagination */}
          </div>
+         <StickyHireButton />
       </div>
    );
-}
+};
+
 export default CourseArea;

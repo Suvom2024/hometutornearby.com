@@ -8,6 +8,7 @@ import { getDatabase, ref, set } from "firebase/database";
 import firebaseConfig from './firebaseConfig'; // Import Firebase configuration
 import { initializeApp } from "firebase/app";
 import axios from 'axios';
+import StickyHireButton from '../StickyHireButton';
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 console.log('Initializing Firebase with config:', firebaseConfig);
@@ -24,7 +25,7 @@ interface FormData {
    subject: string;
 }
 
-const SinginForm = () => {
+const SingupForm = () => {
    const schema = yup
       .object({
          userType: yup.string().required().label("User Type"),
@@ -54,70 +55,73 @@ const SinginForm = () => {
          console.error('Error saving data to Firebase or Excel:', error);
       }
    };
-   
+
    return (
-      <form onSubmit={handleSubmit(onSubmit)} className="signin-inner">
-         <div className="form-header">
-            <h3>FREE Registration</h3>
-         </div>
-         <div className="form-group">
-            <label className="form-label" style={{ fontSize: '1.0rem' }}>I am a</label>
-            <div className="form-radio-group" style={{ display: 'flex', alignItems: 'center' }}>
-               <div style={{ marginRight: '20px' }}>
-                  <input type="radio" {...register("userType")} value="Student/Parent" id="student" />
-                  <label htmlFor="student">Student/Parent</label>
+      <div>
+         <form onSubmit={handleSubmit(onSubmit)} className="signin-inner">
+            <div className="form-header">
+               <h3>FREE Registration</h3>
+            </div>
+            <div className="form-group">
+               <label className="form-label" style={{ fontSize: '1.0rem' }}>I am a</label>
+               <div className="form-radio-group" style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ marginRight: '20px' }}>
+                     <input type="radio" {...register("userType")} value="Student/Parent" id="student" />
+                     <label htmlFor="student">Student/Parent</label>
+                  </div>
+                  <div>
+                     <input type="radio" {...register("userType")} value="Teacher" id="teacher" />
+                     <label htmlFor="teacher">Teacher</label>
+                  </div>
                </div>
-               <div>
-                  <input type="radio" {...register("userType")} value="Teacher" id="teacher" />
-                  <label htmlFor="teacher">Teacher</label>
+               <p className="form_error">{errors.userType?.message}</p>
+            </div>
+            <div className="form-group">
+               <div className="single-input-inner style-bg-border">
+                  <input type="text" {...register("name")} placeholder="Name" />
+                  <small>Enter your full name</small>
+                  <p className="form_error">{errors.name?.message}</p>
                </div>
             </div>
-            <p className="form_error">{errors.userType?.message}</p>
-         </div>
-         <div className="form-group">
-            <div className="single-input-inner style-bg-border">
-               <input type="text" {...register("name")} placeholder="Name" />
-               <small>Enter your full name</small>
-               <p className="form_error">{errors.name?.message}</p>
+            <div className="form-group">
+               <div className="single-input-inner style-bg-border">
+                  <input type="text" {...register("mobileNumber")} placeholder="Mobile Number" />
+                  <small>We don't misuse your phone number</small>
+                  <p className="form_error">{errors.mobileNumber?.message}</p>
+               </div>
             </div>
-         </div>
-         <div className="form-group">
-            <div className="single-input-inner style-bg-border">
-               <input type="text" {...register("mobileNumber")} placeholder="Mobile Number" />
-               <small>We don't misuse your phone number</small>
-               <p className="form_error">{errors.mobileNumber?.message}</p>
+            <div className="form-group">
+               <div className="single-input-inner style-bg-border">
+                  <input type="email" {...register("email")} placeholder="Enter Email" />
+                  <small>We don't misuse your email.</small>
+                  <p className="form_error">{errors.email?.message}</p>
+               </div>
             </div>
-         </div>
-         <div className="form-group">
-            <div className="single-input-inner style-bg-border">
-               <input type="email" {...register("email")} placeholder="Enter Email" />
-               <small>We don't misuse your email.</small>
-               <p className="form_error">{errors.email?.message}</p>
+            <div className="form-group">
+               <div className="single-input-inner style-bg-border">
+                  <input type="text" {...register("course")} placeholder="Courses you teach" />
+                  <small>eg. Class I CBSE or Class X or B.Tech etc.</small>
+                  <p className="form_error">{errors.course?.message}</p>
+               </div>
             </div>
-         </div>
-         <div className="form-group">
-            <div className="single-input-inner style-bg-border">
-               <input type="text" {...register("course")} placeholder="Courses you teach" />
-               <small>eg. Class I CBSE or Class X or B.Tech etc.</small>
-               <p className="form_error">{errors.course?.message}</p>
+            <div className="form-group">
+               <div className="single-input-inner style-bg-border">
+                  <input type="text" {...register("subject")} placeholder="Subjects you teach" />
+                  <small>maths, physics or all subjects etc.</small>
+                  <p className="form_error">{errors.subject?.message}</p>
+               </div>
             </div>
-         </div>
-         <div className="form-group">
-            <div className="single-input-inner style-bg-border">
-               <input type="text" {...register("subject")} placeholder="Subjects you teach" />
-               <small>maths, physics or all subjects etc.</small>
-               <p className="form_error">{errors.subject?.message}</p>
+            <div className="form-group mb-4">
+               <button type="submit" className="ed-btn btn-base w-100">FIND STUDENTS NOW!</button>
             </div>
-         </div>
-         <div className="form-group mb-4">
-            <button type="submit" className="ed-btn btn-base w-100">FIND STUDENTS NOW!</button>
-         </div>
-         <div className="form-footer">
-            <p>By signing up you agree to our <Link href="/terms-and-conditions">Terms and Conditions</Link></p>
-            <p>Already a member? <Link href="/login"><strong>Login</strong></Link></p>
-         </div>
-      </form>
+            <div className="form-footer">
+               <p>By signing up you agree to our <Link href="/terms-and-conditions">Terms and Conditions</Link></p>
+               <p>Already a member? <Link href="/login"><strong>Login</strong></Link></p>
+            </div>
+         </form>
+         <StickyHireButton />
+      </div>
    )
 }
 
-export default SinginForm;
+export default SingupForm;

@@ -37,27 +37,27 @@ const setting = {
 }
 
 const CommonTestimonial = () => {
-   // return (
-   //    <Slider {...setting} className="testimonial-slider-2">
-   //       {testi_data.filter((items) => items.page === "home_2").map((item) => (
-   //          <div key={item.id} className="item">
-   //             <div className="single-testimonial-inner">
-   //                <span className="testimonial-quote"><i className="fa fa-quote-right"></i></span>
-   //                <p>{item.desc}</p>
-   //                <div className="media testimonial-author">
-   //                   <div className="media-left">
-   //                      <Image src={item.author_img} alt="img" />
-   //                   </div>
-   //                   <div className="media-body align-self-center">
-   //                      <h6>{item.author_name}</h6>
-   //                      <p>{item.designation}</p>
-   //                   </div>
-   //                </div>
-   //             </div>
-   //          </div>
-   //       ))}
-   //    </Slider>
-   // )
+   return (
+      <Slider {...setting} className="testimonial-slider-2">
+         {testi_data.filter((items) => items.page === "home_2").map((item) => (
+            <div key={item.id} className="item">
+               <div className="single-testimonial-inner">
+                  <span className="testimonial-quote"><i className="fa fa-quote-right"></i></span>
+                  <p>{item.desc}</p>
+                  <div className="media testimonial-author">
+                     <div className="media-left">
+                        <Image src={item.author_img} alt="img" />
+                     </div>
+                     <div className="media-body align-self-center">
+                        <h6>{item.author_name}</h6>
+                        <p>{item.designation}</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         ))}
+      </Slider>
+   )
 }
 
 export default CommonTestimonial

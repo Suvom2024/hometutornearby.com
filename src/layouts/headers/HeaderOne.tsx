@@ -17,20 +17,26 @@ const HeaderOne = ({ style, style_2 }: any) => {
    const [isSearch, setIsSearch] = useState<boolean>(false);
 
    const toggleMobileMenu = () => {
-      setIsActive(!isActive); // Toggle the isActive state
+      setIsActive(!isActive);
    };
 
    return (
       <>
          <div className="navbar-area">
             <HeaderTopOne />
-            <nav className={`navbar navbar-area navbar-expand-lg ${style_2 ? "bg-white" : ""} ${style ? "navbar-area-2" : "navbar-area-1"} ${sticky ? "sticky-active" : ""}`}>
+            <nav
+               style={{ backgroundColor: "white" }} // Inline CSS for white background
+               className={`navbar navbar-area navbar-expand-lg ${style ? "navbar-area-2" : "navbar-area-1"} ${sticky ? "sticky-active" : ""}`}
+            >
                <div className="container nav-container">
                   <div className="responsive-mobile-menu">
                      <button
                         onClick={toggleMobileMenu}
-                        className={`menu toggle-btn d-block d-lg-none ${isActive ? "open" : ""}`} data-target="#edumint_main_menu"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                        className={`menu toggle-btn d-block d-lg-none ${isActive ? "open" : ""}`}
+                        data-target="#edumint_main_menu"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                     >
                         <span className="icon-left"></span>
                         <span className="icon-right"></span>
                      </button>
@@ -41,7 +47,6 @@ const HeaderOne = ({ style, style_2 }: any) => {
                   <div className="nav-right-part nav-right-part-mobile">
                      <Link className="ed-btn btn-base" href="/signin">Need A Tutor</Link>
                      <Link className="ed-btn btn-base" href="/signup">Join As Tutor</Link>
-                     {/* <a onClick={() => setIsSearch(true)} style={{ cursor: "pointer" }} className="search-bar"><i className="fa fa-search"></i></a> */}
                   </div>
                   <div className={`collapse navbar-collapse ${isActive ? "sopen" : ""}`} id="edumint_main_menu">
                      <ul className="navbar-nav menu-open">
@@ -51,7 +56,6 @@ const HeaderOne = ({ style, style_2 }: any) => {
                   <div className={`nav-right-part nav-right-part-desktop d-none d-lg-flex align-items-center ${style ? "style-black" : ""}`}>
                      <Link className="ed-btn btn-base" href="/signin">Need A Tutor</Link>
                      <Link className="ed-btn btn-base" href="/signup">Join As Tutor</Link>
-                     {/* <a onClick={() => setIsSearch(true)} style={{ cursor: "pointer" }} className="search-bar"><i className="fa fa-search"></i></a> */}
                   </div>
                </div>
             </nav>
@@ -62,4 +66,4 @@ const HeaderOne = ({ style, style_2 }: any) => {
    )
 }
 
-export default HeaderOne
+export default HeaderOne;

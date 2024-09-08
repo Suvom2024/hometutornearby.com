@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Slider from "react-slick";
 import React, { useRef } from "react";
 import Image from "next/image";
@@ -15,7 +15,7 @@ const setting = {
    fade: false,
    autoplay: false,
    autoplaySpeed: 1500
-}
+};
 
 const Testimonial = () => {
 
@@ -34,25 +34,25 @@ const Testimonial = () => {
    };
 
    return (
-      <div className="testimonial-area pd-top-100">
+      <div className="testimonial-area pd-top-60 pd-bottom-100">
          <div className="container">
-            {/* <div className="testimonial-area-inner bg-cover" style={{ backgroundImage: `url(/assets/img/other/2.png)` }}>
-               <Image className="testimonial-right-img" src={testiThumb_1} alt="img" /> */}
-            {/* <div className="testimonial-slider">
-                  <Slider {...setting} ref={sliderRef} className="">
+            <div className="testimonial-area-inner bg-cover" style={{ backgroundImage: `url(/assets/img/other/2.png)` }}>
+               <Image className="testimonial-right-img" src={testiThumb_1} alt="img" />
+               <div className="testimonial-slider">
+                  <Slider {...setting} ref={sliderRef}>
                      {testi_data.filter((items) => items.page === "home_1").map((item) => (
                         <div key={item.id} className="item position-relative">
                            <div className="single-testimonial-inner style-white">
-                              <span className="testimonial-quote"><i className="fa fa-quote-left"></i></span>
-                              <p className="mb-4">{item.desc}</p>
+                              <span className="testimonial-quote" style={{ fontSize: '46px' }}><i className="fa fa-quote-left"></i></span>
+                              <p className="mb-4" style={{ fontSize: '18px' }}>{item.desc}</p>
                               <div className="media testimonial-author">
                                  <div className="media-left">
                                     <Image src={item.author_img} alt="img" />
                                     <i className="fa fa-quote-left"></i>
                                  </div>
                                  <div className="media-body align-self-center">
-                                    <h6>{item.author_name}</h6>
-                                    <p>{item.designation}</p>
+                                    <h6 style={{ fontSize: '20px' }}>{item.author_name}</h6>
+                                    <p style={{ fontSize: '16px' }}>{item.designation}</p>
                                  </div>
                               </div>
                            </div>
@@ -68,11 +68,11 @@ const Testimonial = () => {
                         <span aria-label="Next">›</span>
                      </button>
                   </div>
-               </div> */}
-            {/* </div> */}
+               </div>
+            </div>
          </div>
       </div>
-   )
-}
+   );
+};
 
-export default Testimonial
+export default Testimonial;

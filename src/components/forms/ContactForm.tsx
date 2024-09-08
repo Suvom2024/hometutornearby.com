@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import StickyHireButton from '../StickyHireButton';
 
 interface FormData {
    user_name: string;
@@ -39,45 +40,48 @@ const ContactForm = () => {
    };
 
    return (
-      <form ref={form} onSubmit={handleSubmit(sendMessageToWhatsApp)} className="contact-form-inner mt-5 mt-md-0">
-         <div className="row">
-            <div className="col-lg-6">
-               <div className="single-input-inner style-bg-border">
-                  <input type="text" {...register("user_name")} placeholder="First Name" name="user_name" />
-                  <p className="form_error">{errors.user_name?.message}</p>
+      <div>
+         <form ref={form} onSubmit={handleSubmit(sendMessageToWhatsApp)} className="contact-form-inner mt-5 mt-md-0">
+            <div className="row">
+               <div className="col-lg-6">
+                  <div className="single-input-inner style-bg-border">
+                     <input type="text" {...register("user_name")} placeholder="First Name" name="user_name" />
+                     <p className="form_error">{errors.user_name?.message}</p>
+                  </div>
                </div>
-            </div>
-            <div className="col-lg-6">
-               <div className="single-input-inner style-bg-border">
-                  <input type="text" {...register("user_last_name")} placeholder="Last Name" name="user_last_name" />
-                  <p className="form_error">{errors.user_last_name?.message}</p>
+               <div className="col-lg-6">
+                  <div className="single-input-inner style-bg-border">
+                     <input type="text" {...register("user_last_name")} placeholder="Last Name" name="user_last_name" />
+                     <p className="form_error">{errors.user_last_name?.message}</p>
+                  </div>
                </div>
-            </div>
-            <div className="col-6">
-               <div className="single-input-inner style-bg-border">
-                  <input type="text" {...register("user_email")} placeholder="Email" name="user_email" />
-                  <p className="form_error">{errors.user_email?.message}</p>
+               <div className="col-6">
+                  <div className="single-input-inner style-bg-border">
+                     <input type="text" {...register("user_email")} placeholder="Email" name="user_email" />
+                     <p className="form_error">{errors.user_email?.message}</p>
+                  </div>
                </div>
-            </div>
 
-            <div className="col-6">
-               <div className="single-input-inner style-bg-border">
-                  <input type="text" {...register("subject")} placeholder="Subject" name="subject" />
-                  <p className="form_error">{errors.subject?.message}</p>
+               <div className="col-6">
+                  <div className="single-input-inner style-bg-border">
+                     <input type="text" {...register("subject")} placeholder="Subject" name="subject" />
+                     <p className="form_error">{errors.subject?.message}</p>
+                  </div>
+               </div>
+               <div className="col-12">
+                  <div className="single-input-inner style-bg-border">
+                     <textarea {...register("message")} placeholder="Message" name="message"></textarea>
+                     <p className="form_error">{errors.message?.message}</p>
+                  </div>
+               </div>
+               <p className="form-messege mb-0 mt-20 text-center"></p>
+               <div className="col-12">
+                  <button type="submit" className="ed-btn btn-base">Send Message</button>
                </div>
             </div>
-            <div className="col-12">
-               <div className="single-input-inner style-bg-border">
-                  <textarea {...register("message")} placeholder="Message" name="message"></textarea>
-                  <p className="form_error">{errors.message?.message}</p>
-               </div>
-            </div>
-            <p className="form-messege mb-0 mt-20 text-center"></p>
-            <div className="col-12">
-               <button type="submit" className="ed-btn btn-base">Send Message</button>
-            </div>
-         </div>
-      </form>
+         </form>
+         <StickyHireButton />
+      </div>
    )
 }
 

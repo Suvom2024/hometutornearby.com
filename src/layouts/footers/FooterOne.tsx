@@ -5,7 +5,7 @@ import footerLogo from "@/assets/img/footer-logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
-const course_data: string[] = ["Advanced Economics", "Quantum Physics", "Data Structures", "Constitutional Law", "Mechanics"];
+const course_data: string[] = ["Programming", "Database Systems", "Data Structures", "English", "Physics"];
 
 const FooterOne = () => {
   return (
@@ -56,7 +56,7 @@ const FooterOne = () => {
                     </ul>
                   </div>
                 </div>
-                
+
                 {/* <div className="col-lg-3 col-md-6">
                   <div className="widget widget_contact">
                     <h4 className="widget-title">Twitter Feed</h4>
