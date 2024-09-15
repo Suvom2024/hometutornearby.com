@@ -44,14 +44,11 @@ const SigninForm = () => {
         } else {
           throw new Error(response.data.message || 'Unknown error occurred');
         }
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          toast.error(`Failed to register: ${error.message}`, { position: 'top-center' });
-        } else {
-          console.error('Unexpected error:', error);
-          toast.error('An unexpected error occurred', { position: 'top-center' });
-        }
-      }
+      } catch (error)
+     {
+         console.error('Error writing to Google Sheet:', error.response?.data || error.message || error);
+         res.status(500).json({ message: 'Internal Server Error', error: error.message });
+       }
       finally {
          setLoading(false); // Stop loading
        }
