@@ -7,7 +7,6 @@ const BlogGrid = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Blog" sub_title="Blog" />
          <BlogGridArea />
          <FooterOne />
       </>

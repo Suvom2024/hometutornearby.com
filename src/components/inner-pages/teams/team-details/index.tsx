@@ -7,7 +7,6 @@ const TeamDetails = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Instructor Details" sub_title="Instructor Details" />
          <TeamDetailsArea />
          <FooterOne />
       </>

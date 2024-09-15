@@ -7,7 +7,6 @@ const CourseDetails = () => {
   return (
     <>
       <HeaderOne style_2={true} />
-      <Breadcrumb title="Classes Offered" sub_title="International students" />
       <CourseDetailsArea />
       <FooterOne />
     </>

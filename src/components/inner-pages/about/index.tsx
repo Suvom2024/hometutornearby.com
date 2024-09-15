@@ -11,7 +11,6 @@ const About = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="About Us" sub_title="About Us" />
          <AboutTwo style={true} />
          <Counter />
          {/* <Team style={true} /> */}

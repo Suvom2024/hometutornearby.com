@@ -8,7 +8,6 @@ const Singup = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Join As Tutor" sub_title="Join As Tutor" />
          <SingupArea style={false} />
          <FooterOne />
       </>

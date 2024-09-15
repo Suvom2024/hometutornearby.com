@@ -9,7 +9,6 @@ const Team = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Instructor" sub_title="Instructor" />
          <TeamArea />
          <Counter />
          <Testimonial />

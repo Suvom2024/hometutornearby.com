@@ -9,7 +9,6 @@ const Gallery = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Gallery" sub_title="Gallery" />
          <GalleryArea />
          <Counter />
          <Testimonial />

@@ -8,7 +8,6 @@ const Event = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Event" sub_title="Event" />
          <EventArea />
          <FooterOne />
       </>

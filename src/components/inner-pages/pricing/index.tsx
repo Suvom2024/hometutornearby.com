@@ -7,7 +7,6 @@ const Pricing = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Pricing" sub_title="Pricing" />
          <PricingArea />
          <FooterOne />
       </>

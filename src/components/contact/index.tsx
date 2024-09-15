@@ -9,7 +9,6 @@ const Contact = () => {
    return (
       <>
          <HeaderOne style_2={true} />
-         <Breadcrumb title="Contact" sub_title="Contact" />
          <ContactArea />
          <ContactFormArea />
          <ContactMap />
