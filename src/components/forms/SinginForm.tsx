@@ -4,16 +4,9 @@ import { toast } from 'react-toastify';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getDatabase, ref, set } from "firebase/database";
-import firebaseConfig from './firebaseConfig';
-import { initializeApp } from "firebase/app";
 import axios from 'axios';
 import StickyHireButton from '../StickyHireButton';
-
-console.log('Initializing Firebase with config:', firebaseConfig);
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+import React, { useState } from 'react';
 
 interface FormData {
    userType: string;
@@ -24,7 +17,9 @@ interface FormData {
    subject: string;
 }
 
-const SinginForm = () => {
+const SigninForm = () => {
+   const [loading, setLoading] = useState(false);
+
    const schema = yup
       .object({
          userType: yup.string().required().label("User Type"),
@@ -39,22 +34,28 @@ const SinginForm = () => {
    const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({ resolver: yupResolver(schema) });
 
    const onSubmit = async (data: FormData) => {
-      console.log('Form Data:', data);
-
-      const db = getDatabase(app);
-      const newUserRef = ref(db, 'users/' + Date.now());
-
+      setLoading(true); // Start loading
       try {
-         await set(newUserRef, data);
-         await axios.post('/api/save-registration', data);
-         toast.success('Registration successful', { position: 'top-center' });
-         reset();
+        const response = await axios.post('/api/submit-form', data);
+    
+        if (response.status === 200) {
+          toast.success('Registration successful', { position: 'top-center' });
+          reset();
+        } else {
+          throw new Error(response.data.message || 'Unknown error occurred');
+        }
       } catch (error) {
-         toast.error('Failed to register', { position: 'top-center' });
-         console.error('Error saving data to Firebase or Excel:', error);
+        if (axios.isAxiosError(error)) {
+          toast.error(`Failed to register: ${error.message}`, { position: 'top-center' });
+        } else {
+          console.error('Unexpected error:', error);
+          toast.error('An unexpected error occurred', { position: 'top-center' });
+        }
       }
-   };
-
+      finally {
+         setLoading(false); // Stop loading
+       }
+    };
    return (
       <div>
          <form onSubmit={handleSubmit(onSubmit)} className="signin-inner">
@@ -110,12 +111,11 @@ const SinginForm = () => {
                   <p className="form_error">{errors.subject?.message}</p>
                </div>
             </div>
-            <div className="form-group mb-4">
-               <button type="submit" className="ed-btn btn-base w-100">GET FREE DEMO CLASS!</button>
-            </div>
+            <button type="submit" className="ed-btn btn-base w-100" disabled={loading}>
+            {loading ? 'Submitting...' : 'GET FREE DEMO CLASS!'}
+            </button>
             <div className="form-footer">
                <p>By signing up you agree to our <Link href="/terms-and-conditions">Terms and Conditions</Link></p>
-               <p>Already a member? <Link href="/login"><strong>Login</strong></Link></p>
             </div>
          </form>
          <StickyHireButton />
@@ -123,4 +123,4 @@ const SinginForm = () => {
    )
 }
 
-export default SinginForm;
+export default SigninForm;

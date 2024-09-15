@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useState, useEffect } from "react";
 import StickyHireButton from '../../StickyHireButton';
 
 const pricing_data = [
@@ -42,28 +42,33 @@ const pricing_data = [
 const PricingArea = () => {
    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
    const [hoveredButton, setHoveredButton] = useState<number | null>(null);
+   const [isMobileView, setIsMobileView] = useState<boolean>(false);
+
+   // Handle window resize for responsive design
+   useEffect(() => {
+      const handleResize = () => setIsMobileView(window.innerWidth <= 768);
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+   }, []);
 
    const cardStyle = (id: number): CSSProperties => ({
       backgroundColor: 'white',
       borderRadius: '8px',
       padding: '20px',
-      width: '385px',
+      width: isMobileView ? '90%' : '385px',
       position: 'relative',
       border: id === 2 ? '2px solid #fdc800' : 'none',
       transition: 'all 0.3s ease',
       transform: hoveredCard === id ? 'scale(1.05)' : 'scale(1)',
       boxShadow: hoveredCard === id ? '0 8px 16px rgba(0, 0, 0, 0.2)' : '0 4px 6px rgba(0, 0, 0, 0.1)',
-      marginTop: '130px',
+      marginTop: isMobileView ? '20px' : '130px',
       zIndex: hoveredCard === id ? 1 : 0,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      ...(window.innerWidth <= 768 ? { // Media query for phones and small tablets
-         width: '90%', // Reduce width on small screens
-         marginTop: '20px',
-         marginLeft: 'auto',
-         marginRight: 'auto'
-      } : {})
+      marginLeft: isMobileView ? 'auto' : undefined,
+      marginRight: isMobileView ? 'auto' : undefined
    });
 
    const buttonStyle = (id: number): CSSProperties => ({
@@ -101,11 +106,7 @@ const PricingArea = () => {
    return (
       <div style={{ fontFamily: 'Arial, sans-serif', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '130vh', margin: 0, backgroundColor: '#f0f0f0' }}>
          <div style={{
-            display: 'flex', gap: '60px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '100px', ...(window.innerWidth <= 768 ? { // Media query for phones and small tablets
-               flexDirection: 'column', // Stack cards vertically on small screens
-               gap: '20px',
-               marginBottom: '50px'
-            } : {})
+            display: 'flex', gap: isMobileView ? '20px' : '60px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: isMobileView ? '50px' : '100px'
          }}>
             {pricing_data.map((item) => (
                <div

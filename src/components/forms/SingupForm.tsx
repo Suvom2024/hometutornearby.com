@@ -8,12 +8,10 @@ import { getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import axios from 'axios';
 import StickyHireButton from '../StickyHireButton';
-import firebaseConfig from './firebaseConfig'; // Import Firebase configuration
+import React, { useState } from 'react';
 
-console.log('Initializing Firebase with config:', firebaseConfig);
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 interface FormData {
    userType: string;
@@ -25,6 +23,8 @@ interface FormData {
 }
 
 const SignupForm = () => {
+   const [loading, setLoading] = useState(false);
+
    const schema = yup
       .object({
          userType: yup.string().required("Please select a user type.").label("User Type"),
@@ -47,20 +47,24 @@ const SignupForm = () => {
 
    const onSubmit = async (data: FormData) => {
       console.log('Form Data:', data);
-
-      const db = getDatabase(app); // Get a reference to the database
-      const newUserRef = ref(db, 'users/' + Date.now()); // Create a unique user reference
-
+      setLoading(true); // Start loading
+    
       try {
-         await set(newUserRef, data); // Save data to Firebase
-         await axios.post('/api/save-registration', data); // Send data to the backend to save in Excel
-         toast.success('Registration successful', { position: 'top-center' });
-         reset();
+        const response = await axios.post('/api/submit-form', data);
+    
+        if (response.status === 200) {
+          toast.success('Registration successful', { position: 'top-center' });
+          reset();
+        } else {
+          throw new Error(response.data.message || 'Unknown error occurred');
+        }
       } catch (error) {
-         toast.error('Failed to register', { position: 'top-center' });
-         console.error('Error saving data to Firebase or Excel:', error);
+        toast.error('Failed to register', { position: 'top-center' });
+        console.error('Error saving data:', error);
+      } finally {
+        setLoading(false); // Stop loading
       }
-   };
+    };
 
    return (
       <div>
@@ -117,12 +121,11 @@ const SignupForm = () => {
                   <p className="form_error">{errors.subject?.message}</p>
                </div>
             </div>
-            <div className="form-group mb-4">
-               <button type="submit" className="ed-btn btn-base w-100">FIND STUDENTS NOW!</button>
-            </div>
+            <button type="submit" className="ed-btn btn-base w-100" disabled={loading}>
+               {loading ? 'Submitting...' : 'FIND STUDENTS NOW!'}
+               </button>
             <div className="form-footer">
                <p>By signing up, you agree to our <Link href="/terms-and-conditions">Terms and Conditions</Link></p>
-               <p>Already a member? <Link href="/login"><strong>Login</strong></Link></p>
             </div>
          </form>
          <StickyHireButton />
