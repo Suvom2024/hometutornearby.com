@@ -136,8 +136,8 @@ const PricingArea = () => {
                   </ul>
                   <div style={{ backgroundColor: 'rgb(253, 226, 226)', color: '#e06f25', fontSize: '20px', fontWeight: 'bold', marginTop: '10px', padding: '10px', borderRadius: '5px', textAlign: 'center', fontStyle: 'italic' }}>
                      <p>Upto 50% extra contacts</p>
-                     <p>Free of cost in case you don't find tutor with given contacts</p>
-                  </div>
+                     <p>Free of cost in case you don&apos;t find tutor with given contacts</p>
+                     </div>
                   <Link href="#" style={{ textDecoration: 'none' }}>
                      <button
                         onClick={() => alert(`You selected the ${item.title} plan!`)}

@@ -94,19 +94,20 @@ const SignupForm = () => {
                </div>
             </div>
             <div className="form-group">
-               <div className="single-input-inner style-bg-border">
-                  <input type="text" {...register("mobileNumber")} placeholder="Mobile Number" />
-                  <small>We don't misuse your phone number</small>
-                  <p className="form_error">{errors.mobileNumber?.message}</p>
-               </div>
+            <div className="single-input-inner style-bg-border">
+               <input type="text" {...register("mobileNumber")} placeholder="Mobile Number" />
+               <small>We don&apos;t misuse your phone number</small>
+               <p className="form_error">{errors.mobileNumber?.message}</p>
             </div>
-            <div className="form-group">
-               <div className="single-input-inner style-bg-border">
-                  <input type="email" {...register("email")} placeholder="Enter Email" />
-                  <small>We don't misuse your email.</small>
-                  <p className="form_error">{errors.email?.message}</p>
-               </div>
+         </div>
+
+         <div className="form-group">
+            <div className="single-input-inner style-bg-border">
+               <input type="email" {...register("email")} placeholder="Enter Email" />
+               <small>We don&apos;t misuse your email.</small>
+               <p className="form_error">{errors.email?.message}</p>
             </div>
+         </div>
             <div className="form-group">
                <div className="single-input-inner style-bg-border">
                   <input type="text" {...register("course")} placeholder="Courses you teach" />
