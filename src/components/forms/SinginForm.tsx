@@ -44,11 +44,19 @@ const SigninForm = () => {
         } else {
           throw new Error(response.data.message || 'Unknown error occurred');
         }
-      } catch (error)
-     {
-         console.error('Error writing to Google Sheet:', error.response?.data || error.message || error);
-         res.status(500).json({ message: 'Internal Server Error', error: error.message });
-       }
+      } catch (error) {
+         // Narrowing error type for better TypeScript support
+         if (axios.isAxiosError(error)) {
+           console.error('Axios error:', error.response?.data || error.message);
+           toast.error(`Failed to register: ${error.message}`, { position: 'top-center' });
+         } else if (error instanceof Error) {
+           console.error('Error:', error.message);
+           toast.error(`Unexpected error: ${error.message}`, { position: 'top-center' });
+         } else {
+           console.error('Unknown error:', error);
+           
+         }toast.error('An unknown error occurred', { position: 'top-center' });
+         }
       finally {
          setLoading(false); // Stop loading
        }
