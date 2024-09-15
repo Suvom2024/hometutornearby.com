@@ -1,11 +1,8 @@
-// pages/api/submit-form.js
-
 import { google } from 'googleapis';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    res.status(405).json({ message: 'Method Not Allowed' });
-    return;
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   const { userType, name, mobileNumber, email, course, subject } = req.body;
@@ -51,7 +48,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: 'Success' });
   } catch (error) {
-    console.error('Error writing to Google Sheet:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    console.error('Error writing to Google Sheet:', error); // Add detailed error logging
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }
 }
