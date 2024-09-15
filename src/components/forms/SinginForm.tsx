@@ -44,19 +44,15 @@ const SigninForm = () => {
         } else {
           throw new Error(response.data.message || 'Unknown error occurred');
         }
-      } catch (error) {
-         // Narrowing error type for better TypeScript support
-         if (axios.isAxiosError(error)) {
-           console.error('Axios error:', error.response?.data || error.message);
-           toast.error(`Failed to register: ${error.message}`, { position: 'top-center' });
-         } else if (error instanceof Error) {
-           console.error('Error:', error.message);
-           toast.error(`Unexpected error: ${error.message}`, { position: 'top-center' });
-         } else {
-           console.error('Unknown error:', error);
-           
-         }toast.error('An unknown error occurred', { position: 'top-center' });
-         }
+      } catch (error)
+       {
+        if (axios.isAxiosError(error)) {
+          toast.error(`Failed to register: ${error.message}`, { position: 'top-center' });
+        } else {
+          console.error('Unexpected error:', error);
+          toast.error('An unexpected error occurred', { position: 'top-center' });
+        }
+      }
       finally {
          setLoading(false); // Stop loading
        }
